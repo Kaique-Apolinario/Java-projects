@@ -1,0 +1,69 @@
+package com.crud.CrudUserOrder.pk;
+
+import java.util.Objects;
+
+import com.crud.CrudUserOrder.entites.Order;
+import com.crud.CrudUserOrder.entites.Product;
+
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.OneToMany;
+
+@Embeddable
+public class OrderItemPK {
+
+	@OneToMany
+	private Product prod_id;
+	@OneToMany
+	private Order order_id;
+	
+	public OrderItemPK() {
+		
+	}
+	
+	public OrderItemPK(Product prod_id, Order order_id) {
+		super();
+		this.prod_id = prod_id;
+		this.order_id = order_id;
+	}
+	
+
+	public Product getProd_id() {
+		return prod_id;
+	}
+
+	public void setProd_id(Product prod_id) {
+		this.prod_id = prod_id;
+	}
+
+	public Order getOrder_id() {
+		return order_id;
+	}
+
+
+
+	public void setOrder_id(Order order_id) {
+		this.order_id = order_id;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(order_id, prod_id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderItemPK other = (OrderItemPK) obj;
+		return Objects.equals(order_id, other.order_id) && Objects.equals(prod_id, other.prod_id);
+	}
+	
+	
+	
+}
