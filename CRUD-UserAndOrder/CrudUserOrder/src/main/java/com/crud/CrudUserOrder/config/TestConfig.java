@@ -3,12 +3,12 @@ package com.crud.CrudUserOrder.config;
 import java.time.Instant;
 import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.crud.CrudUserOrder.entites.Order;
+import com.crud.CrudUserOrder.entites.Payment;
 import com.crud.CrudUserOrder.entites.User;
 import com.crud.CrudUserOrder.repositories.OrderRepository;
 import com.crud.CrudUserOrder.repositories.UserRepository;
@@ -38,6 +38,10 @@ public class TestConfig implements CommandLineRunner {
 		
 		userRepo.saveAll(Arrays.asList(u1, u2));
 		orderRepo.saveAll(Arrays.asList(o1, o2));
+		
+		Payment p1 = new Payment(null, Instant.parse("2024-08-01T11:00:15Z"), o1);
+		o1.setPayment(p1);
+		orderRepo.save(o1);
 		
 	}
 

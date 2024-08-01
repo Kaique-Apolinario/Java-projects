@@ -7,12 +7,14 @@ import java.util.Objects;
 import com.crud.CrudUserOrder.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Order implements Serializable {
@@ -27,6 +29,9 @@ public class Order implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 	private OrderStatus orderStatus;
+	
+	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+	private Payment payment;
 	
 	public Order() {
 	}
@@ -69,6 +74,15 @@ public class Order implements Serializable {
 
 	public void setOrderStatus(int num) {
 		orderStatus = OrderStatus.convertIntToStatus(num);
+	}
+
+	
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 	@Override
