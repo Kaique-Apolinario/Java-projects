@@ -9,8 +9,11 @@ import org.springframework.context.annotation.Profile;
 
 import com.crud.CrudUserOrder.entites.Order;
 import com.crud.CrudUserOrder.entites.Payment;
+import com.crud.CrudUserOrder.entites.Product;
 import com.crud.CrudUserOrder.entites.User;
+import com.crud.CrudUserOrder.repositories.OrderItemRepository;
 import com.crud.CrudUserOrder.repositories.OrderRepository;
+import com.crud.CrudUserOrder.repositories.ProductRepository;
 import com.crud.CrudUserOrder.repositories.UserRepository;
 
 @Configuration
@@ -19,13 +22,16 @@ public class TestConfig implements CommandLineRunner {
 
 	private UserRepository userRepo;
 	private OrderRepository orderRepo;
+	private ProductRepository prodRepo;
 	
-
-	public TestConfig(UserRepository userRepo, OrderRepository orderRepo) {
+	//Dependency constructor
+	public TestConfig(UserRepository userRepo, OrderRepository orderRepo, ProductRepository prodRepo) {
 		this.userRepo = userRepo;
 		this.orderRepo = orderRepo;
+		this.prodRepo = prodRepo;
 	}
 
+	//Test instantiations
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -42,6 +48,12 @@ public class TestConfig implements CommandLineRunner {
 		Payment p1 = new Payment(null, Instant.parse("2024-08-01T11:00:15Z"), o1);
 		o1.setPayment(p1);
 		orderRepo.save(o1);
+		
+		Product prod1 = new Product(null, "Shampoo", "Use on your hair", 10.2);
+		Product prod2 = new Product(null, "Spoon", "Use to eat", 5.0);
+		Product prod3 = new Product(null, "Smartphone", "Use for your entertainment", 900.5);
+		
+		prodRepo.saveAll(Arrays.asList(prod1, prod2, prod3));
 		
 	}
 

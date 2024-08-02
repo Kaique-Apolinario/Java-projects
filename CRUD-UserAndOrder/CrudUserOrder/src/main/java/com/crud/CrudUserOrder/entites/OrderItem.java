@@ -1,15 +1,24 @@
 package com.crud.CrudUserOrder.entites;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import com.crud.CrudUserOrder.pk.OrderItemPK;
 
-public class OrderItem {
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
 
+@Entity
+public class OrderItem implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	//OrderItem attributes
+	@EmbeddedId
 	private OrderItemPK idpk;
 	private Integer quantity;
 	private Double price;
 	
+	//OrderItem constructors
 	public OrderItem(){}
 	
 	public OrderItem(Product prod, Order order, Integer quantity, Double price) {
@@ -19,6 +28,7 @@ public class OrderItem {
 		this.price = price;
 	}
 	
+	//OrderItem getters and setters
 	public OrderItemPK getIdpk() {
 		return idpk;
 	}
@@ -43,6 +53,7 @@ public class OrderItem {
 		this.price = price;
 	}
 
+	//OrderItem hashcode and equals
 	@Override
 	public int hashCode() {
 		return Objects.hash(idpk);

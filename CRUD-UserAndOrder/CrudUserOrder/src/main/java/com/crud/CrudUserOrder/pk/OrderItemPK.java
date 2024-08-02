@@ -11,13 +11,15 @@ import jakarta.persistence.OneToMany;
 @Embeddable
 public class OrderItemPK {
 
+	//OrderItemPK attributes
 	@OneToMany
 	private Product prod_id;
 	@OneToMany
 	private Order order_id;
 	
+	
+	//OrderItemPK constructors
 	public OrderItemPK() {
-		
 	}
 	
 	public OrderItemPK(Product prod_id, Order order_id) {
@@ -27,6 +29,7 @@ public class OrderItemPK {
 	}
 	
 
+	//OrderItemPK
 	public Product getProd_id() {
 		return prod_id;
 	}

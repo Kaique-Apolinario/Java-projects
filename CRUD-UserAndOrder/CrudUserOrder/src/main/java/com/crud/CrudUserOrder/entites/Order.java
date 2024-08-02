@@ -20,6 +20,7 @@ import jakarta.persistence.OneToOne;
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	//Order attributes
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -33,6 +34,9 @@ public class Order implements Serializable {
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
 	
+	
+	
+	//Order constructors
 	public Order() {
 	}
 
@@ -44,6 +48,7 @@ public class Order implements Serializable {
 		orderStatus = OrderStatus.convertIntToStatus(orderStatusNumber);
 	}
 
+	//Order getters and setters
 	public Long getId() {
 		return id;
 	}
@@ -85,6 +90,7 @@ public class Order implements Serializable {
 		this.payment = payment;
 	}
 
+	//Order hashcode and equalsTo
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
