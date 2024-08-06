@@ -7,11 +7,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.crud.CrudUserOrder.entites.Category;
 import com.crud.CrudUserOrder.entites.Order;
 import com.crud.CrudUserOrder.entites.OrderItem;
 import com.crud.CrudUserOrder.entites.Payment;
 import com.crud.CrudUserOrder.entites.Product;
 import com.crud.CrudUserOrder.entites.User;
+import com.crud.CrudUserOrder.repositories.CategoryRepository;
 import com.crud.CrudUserOrder.repositories.OrderItemRepository;
 import com.crud.CrudUserOrder.repositories.OrderRepository;
 import com.crud.CrudUserOrder.repositories.ProductRepository;
@@ -25,13 +27,15 @@ public class TestConfig implements CommandLineRunner {
 	private OrderRepository orderRepo;
 	private ProductRepository prodRepo;
 	private OrderItemRepository oiRepo;
+	private CategoryRepository catRepo;
 	
 	//Dependency constructor
-	public TestConfig(UserRepository userRepo, OrderRepository orderRepo, ProductRepository prodRepo, OrderItemRepository oiRepo) {
+	public TestConfig(UserRepository userRepo, OrderRepository orderRepo, ProductRepository prodRepo, OrderItemRepository oiRepo, CategoryRepository catRepo) {
 		this.userRepo = userRepo;
 		this.orderRepo = orderRepo;
 		this.prodRepo = prodRepo;
 		this.oiRepo = oiRepo;
+		this.catRepo = catRepo;
 	}
 
 	//Test instantiations
@@ -63,8 +67,19 @@ public class TestConfig implements CommandLineRunner {
 		OrderItem oi3 = new OrderItem(prod3, o2, 2, prod3.getPrice());
 		OrderItem oi4 = new OrderItem(prod3, o2, 3, prod3.getPrice());
 		
+		
 		oiRepo.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 		
+		Category cat1 = new Category(null, "Kitchen");
+		Category cat2 = new Category(null, "Tech");
+		Category cat3 = new Category(null, "Shower");
+		
+		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
+		
+		prod1.getCatList().add(cat3);
+		prod2.getCatList().add(cat1);
+		prod3.getCatList().add(cat2);
+		prodRepo.saveAll(Arrays.asList(prod1, prod2, prod3));
 		
 	}
 
