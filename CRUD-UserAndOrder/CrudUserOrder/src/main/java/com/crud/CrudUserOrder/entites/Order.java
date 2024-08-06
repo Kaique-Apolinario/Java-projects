@@ -2,7 +2,9 @@ package com.crud.CrudUserOrder.entites;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import com.crud.CrudUserOrder.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -14,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -34,7 +37,15 @@ public class Order implements Serializable {
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
 	
+	@OneToMany(mappedBy = "idpk.order_id")
+	private Set<OrderItem> items = new HashSet<>();
 	
+	
+	
+	
+	
+	
+
 	
 	//Order constructors
 	public Order() {
@@ -88,6 +99,10 @@ public class Order implements Serializable {
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+	
+	public Set<OrderItem> getItems() {
+		return items;
 	}
 
 	//Order hashcode and equalsTo

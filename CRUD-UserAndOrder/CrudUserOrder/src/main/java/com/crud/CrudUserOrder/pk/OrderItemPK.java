@@ -6,16 +6,31 @@ import com.crud.CrudUserOrder.entites.Order;
 import com.crud.CrudUserOrder.entites.Product;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Embeddable
 public class OrderItemPK {
 
 	//OrderItemPK attributes
-	@OneToMany
+	@ManyToOne
+	@JoinColumn(name = "prod_id")
 	private Product prod_id;
-	@OneToMany
+	@ManyToOne
+	@JoinColumn(name = "order_id")
 	private Order order_id;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	//OrderItemPK constructors

@@ -1,12 +1,15 @@
 package com.crud.CrudUserOrder.entites;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product implements Serializable{
@@ -19,7 +22,19 @@ public class Product implements Serializable{
 	private String description;
 	private Double price;
 	
+	@OneToMany(mappedBy = "idpk.prod_id")
+	private Set<OrderItem> items= new HashSet<>();
 	
+	
+	
+	
+	
+
+	public Product() {
+		super();
+	}
+
+
 	public Product(Long id, String name, String description, Double price) {
 		super();
 		this.id = id;
@@ -69,10 +84,18 @@ public class Product implements Serializable{
 	}
 
 
+	
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
+	public Set<OrderItem> getItems() {
+		return items;
+	}
+
 
 
 	@Override

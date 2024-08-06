@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import com.crud.CrudUserOrder.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -18,6 +19,36 @@ public class OrderItem implements Serializable{
 	private Integer quantity;
 	private Double price;
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//OrderItem constructors
 	public OrderItem(){}
 	
@@ -29,14 +60,25 @@ public class OrderItem implements Serializable{
 	}
 	
 	//OrderItem getters and setters
-	public OrderItemPK getIdpk() {
-		return idpk;
+	@JsonIgnore
+	public Order getOrder() {
+		return idpk.getOrder_id();
 	}
 
-	public void setIdpk(OrderItemPK idpk) {
-		this.idpk = idpk;
+	public void setOrder(Order order) {
+		idpk.setOrder_id(order);
 	}
 
+	@JsonIgnore
+	public Product getProduct() {
+		return idpk.getProd_id();
+	}
+
+	public void setProduct(Product product) {
+		idpk.setProd_id(product);
+	}
+	
+	
 	public Integer getQuantity() {
 		return quantity;
 	}

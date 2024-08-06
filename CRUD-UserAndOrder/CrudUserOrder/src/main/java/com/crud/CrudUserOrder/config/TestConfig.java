@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.crud.CrudUserOrder.entites.Order;
+import com.crud.CrudUserOrder.entites.OrderItem;
 import com.crud.CrudUserOrder.entites.Payment;
 import com.crud.CrudUserOrder.entites.Product;
 import com.crud.CrudUserOrder.entites.User;
@@ -23,12 +24,14 @@ public class TestConfig implements CommandLineRunner {
 	private UserRepository userRepo;
 	private OrderRepository orderRepo;
 	private ProductRepository prodRepo;
+	private OrderItemRepository oiRepo;
 	
 	//Dependency constructor
-	public TestConfig(UserRepository userRepo, OrderRepository orderRepo, ProductRepository prodRepo) {
+	public TestConfig(UserRepository userRepo, OrderRepository orderRepo, ProductRepository prodRepo, OrderItemRepository oiRepo) {
 		this.userRepo = userRepo;
 		this.orderRepo = orderRepo;
 		this.prodRepo = prodRepo;
+		this.oiRepo = oiRepo;
 	}
 
 	//Test instantiations
@@ -54,6 +57,14 @@ public class TestConfig implements CommandLineRunner {
 		Product prod3 = new Product(null, "Smartphone", "Use for your entertainment", 900.5);
 		
 		prodRepo.saveAll(Arrays.asList(prod1, prod2, prod3));
+		
+		OrderItem oi1 = new OrderItem(prod1, o1, 2, prod1.getPrice());
+		OrderItem oi2 = new OrderItem(prod2, o1, 2, prod2.getPrice());
+		OrderItem oi3 = new OrderItem(prod3, o2, 2, prod3.getPrice());
+		OrderItem oi4 = new OrderItem(prod3, o2, 3, prod3.getPrice());
+		
+		oiRepo.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+		
 		
 	}
 
