@@ -79,7 +79,13 @@ public class TestConfig implements CommandLineRunner {
 		prod1.getCatList().add(cat3);
 		prod2.getCatList().add(cat1);
 		prod3.getCatList().add(cat2);
+		
+		cat1.getProdList().add(prod2);
+		cat2.getProdList().add(prod3);
+		cat3.getProdList().add(prod1);
+		
 		prodRepo.saveAll(Arrays.asList(prod1, prod2, prod3));
+		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
 	}
 
