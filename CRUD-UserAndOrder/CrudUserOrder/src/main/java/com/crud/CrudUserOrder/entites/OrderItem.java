@@ -27,28 +27,6 @@ public class OrderItem implements Serializable{
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//OrderItem constructors
 	public OrderItem(){}
 	

@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 
@@ -24,6 +25,7 @@ public class Payment implements Serializable {
 	
 	@JsonIgnore
 	@OneToOne
+	@JoinColumn(name = "orderOfPaym")
 	@MapsId
 	private Order order;
 
@@ -77,6 +79,8 @@ public class Payment implements Serializable {
 		Payment other = (Payment) obj;
 		return Objects.equals(id, other.id);
 	}
+
+
 	
 	
 }

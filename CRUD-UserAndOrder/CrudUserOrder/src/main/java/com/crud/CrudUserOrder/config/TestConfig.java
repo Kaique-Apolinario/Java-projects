@@ -48,17 +48,17 @@ public class TestConfig implements CommandLineRunner {
 		
 		Order o1 = new Order(null, Instant.parse("2024-08-01T11:00:15Z"), u1, 1);
 		Order o2 = new Order(null, Instant.parse("2024-08-01T11:00:15Z"), u2, 2);
-		
 		userRepo.saveAll(Arrays.asList(u1, u2));
 		orderRepo.saveAll(Arrays.asList(o1, o2));
 		
 		Payment p1 = new Payment(null, Instant.parse("2024-08-01T11:00:15Z"), o1);
 		o1.setPayment(p1);
-		orderRepo.save(o1);
+		p1.setOrder(o1);
 		
 		Product prod1 = new Product(null, "Shampoo", "Use on your hair", 10.2);
 		Product prod2 = new Product(null, "Spoon", "Use to eat", 5.0);
 		Product prod3 = new Product(null, "Smartphone", "Use for your entertainment", 900.5);
+		
 		
 		prodRepo.saveAll(Arrays.asList(prod1, prod2, prod3));
 		
@@ -76,15 +76,21 @@ public class TestConfig implements CommandLineRunner {
 		
 		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
+		o1.getItems().add(oi1);
+		o1.getItems().add(oi2);
+		o2.getItems().add(oi3);
+		o2.getItems().add(oi4);
+		orderRepo.saveAll(Arrays.asList(o1, o2));
+		
+		
 		prod1.getCatList().add(cat3);
 		prod2.getCatList().add(cat1);
 		prod3.getCatList().add(cat2);
+		prodRepo.saveAll(Arrays.asList(prod1, prod2, prod3));
 		
 		cat1.getProdList().add(prod2);
 		cat2.getProdList().add(prod3);
 		cat3.getProdList().add(prod1);
-		
-		prodRepo.saveAll(Arrays.asList(prod1, prod2, prod3));
 		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3));
 		
 	}
