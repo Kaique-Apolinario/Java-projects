@@ -1,4 +1,4 @@
-package com.crud.CrudUserOrder.entites;
+package com.crud.CrudUserOrder.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -105,6 +105,15 @@ public class Order implements Serializable {
 		return items;
 	}
 
+	
+	public Double getTotal() {
+		Double sum = 0.0;
+		for (OrderItem orderItem: items) {
+			sum += orderItem.getSubtotal();
+		}
+		return sum;
+	}
+	
 	//Order hashcode and equalsTo
 	@Override
 	public int hashCode() {

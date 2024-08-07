@@ -7,12 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.crud.CrudUserOrder.entites.Category;
-import com.crud.CrudUserOrder.entites.Order;
-import com.crud.CrudUserOrder.entites.OrderItem;
-import com.crud.CrudUserOrder.entites.Payment;
-import com.crud.CrudUserOrder.entites.Product;
-import com.crud.CrudUserOrder.entites.User;
+import com.crud.CrudUserOrder.entities.Category;
+import com.crud.CrudUserOrder.entities.Order;
+import com.crud.CrudUserOrder.entities.OrderItem;
+import com.crud.CrudUserOrder.entities.Payment;
+import com.crud.CrudUserOrder.entities.Product;
+import com.crud.CrudUserOrder.entities.User;
 import com.crud.CrudUserOrder.repositories.CategoryRepository;
 import com.crud.CrudUserOrder.repositories.OrderItemRepository;
 import com.crud.CrudUserOrder.repositories.OrderRepository;

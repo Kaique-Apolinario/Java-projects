@@ -1,4 +1,4 @@
-package com.crud.CrudUserOrder.entites;
+package com.crud.CrudUserOrder.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;

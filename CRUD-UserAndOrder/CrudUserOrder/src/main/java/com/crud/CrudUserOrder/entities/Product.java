@@ -1,11 +1,9 @@
-package com.crud.CrudUserOrder.entites;
+package com.crud.CrudUserOrder.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +35,6 @@ public class Product implements Serializable{
 	public Product() {
 		super();
 	}
-
 
 	public Product(Long id, String name, String description, Double price) {
 		super();
@@ -91,6 +88,14 @@ public class Product implements Serializable{
 		return catList;
 	}
 	
+	public Set<Order> getOrders(){
+		Set<Order> orders = new HashSet<>();
+		for (OrderItem order : items) {
+			orders.add(order.getOrder());
+		}
+		return orders;
+	}
+	
 	
 	//Product hashcode and equals
 	@Override
@@ -115,7 +120,4 @@ public class Product implements Serializable{
 		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
 }

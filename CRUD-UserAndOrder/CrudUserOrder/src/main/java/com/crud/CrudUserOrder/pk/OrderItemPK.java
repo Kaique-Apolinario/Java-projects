@@ -2,8 +2,8 @@ package com.crud.CrudUserOrder.pk;
 
 import java.util.Objects;
 
-import com.crud.CrudUserOrder.entites.Order;
-import com.crud.CrudUserOrder.entites.Product;
+import com.crud.CrudUserOrder.entities.Order;
+import com.crud.CrudUserOrder.entities.Product;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;

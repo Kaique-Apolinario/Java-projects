@@ -1,4 +1,4 @@
-package com.crud.CrudUserOrder.entites;
+package com.crud.CrudUserOrder.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -71,6 +71,10 @@ public class OrderItem implements Serializable{
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	
+	public Double getSubtotal() {
+		return quantity * price;
 	}
 
 	//OrderItem hashcode and equals

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.crud.CrudUserOrder.entites.Category;
+import com.crud.CrudUserOrder.entities.Category;
 import com.crud.CrudUserOrder.repositories.CategoryRepository;
 
 @Service
