@@ -17,7 +17,7 @@ public class UserService {
 		this.userRepo = userRepo;
 	}
 	
-	public List<User> findAll () {
+	public List<User> findAll() {
 		return userRepo.findAll();
 	}
 	
@@ -25,4 +25,25 @@ public class UserService {
 		Optional<User> optUser = userRepo.findById(id);
 		return optUser.get();
 	}
+
+	public User insert(User obj) {
+		return userRepo.save(obj);
+	}
+	
+	public User update(Long id, User upUser) {
+		User entity = userRepo.getReferenceById(id);
+		updateData(entity, upUser);
+		return userRepo.save(entity);
+	}
+	
+	private void updateData(User entity, User upUser){
+		entity.setName(upUser.getName());
+		entity.setEmail(upUser.getEmail());
+		entity.setPhone(upUser.getPhone());
+	}
+	
+	public void delete(Long id){
+		userRepo.deleteById(id);
+	}
+	
 }
