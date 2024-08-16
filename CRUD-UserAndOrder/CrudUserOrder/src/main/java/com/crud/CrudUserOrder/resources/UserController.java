@@ -1,5 +1,6 @@
 package com.crud.CrudUserOrder.resources;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.crud.CrudUserOrder.entities.User;
 import com.crud.CrudUserOrder.services.UserService;
@@ -40,7 +42,9 @@ public class UserController {
 	@PostMapping
 	public ResponseEntity<User> insert(@RequestBody User newUser){
 		newUser = userServ.insert(newUser);
-		return ResponseEntity.ok().body(newUser);
+		URI url = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newUser.getId()).toUri();
+		return ResponseEntity.created(url).body(newUser);
+
 	}
 	
 	@PutMapping(value = "/{id}")

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.crud.CrudUserOrder.entities.User;
 import com.crud.CrudUserOrder.repositories.UserRepository;
+import com.crud.CrudUserOrder.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -23,7 +24,7 @@ public class UserService {
 	
 	public User findbyId(Long id) {
 		Optional<User> optUser = userRepo.findById(id);
-		return optUser.get();
+		return optUser.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	public User insert(User obj) {
