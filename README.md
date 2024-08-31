@@ -1,7 +1,7 @@
 <h1 align="center">Java projects</h1>
 
 <p align="center">
-    <img src="[https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/2048px-Python.svg.png](https://brandslogos.com/wp-content/uploads/images/large/java-logo-1.png)" alt="Java logo" style="height: 100px; width:100px;"/>
+    <img src="java_logo.png" alt="Java logo" style="height: 100px; width:180px;"/>
 </p>
  
 <p align="center">Those are some of my projects and exercises in Java.</p>
